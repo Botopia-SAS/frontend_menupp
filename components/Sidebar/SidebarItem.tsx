@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useSidebar } from "@/lib/SidebarContext";
 
 export default function SidebarItem({
   label,
@@ -10,6 +11,7 @@ export default function SidebarItem({
 }: any) {
   const pathname = usePathname();
   const isActive = pathname === path;
+  const { isHovered } = useSidebar(); // Usamos el contexto para detectar el hover
 
   return (
     <Link href={path}>
@@ -25,7 +27,10 @@ export default function SidebarItem({
         <span
           className={cn(
             "ml-3 overflow-hidden whitespace-nowrap transition-all duration-300",
-            "max-w-0 opacity-0 scale-95 group-hover:max-w-[180px] group-hover:opacity-100 group-hover:scale-100"
+            // Cambiamos la lógica de group-hover por nuestro estado isHovered
+            !isHovered
+              ? "max-w-0 opacity-0 scale-95"
+              : "max-w-[180px] opacity-100 scale-100"
           )}
         >
           {label}

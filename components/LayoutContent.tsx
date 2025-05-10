@@ -9,15 +9,16 @@ export default function LayoutContent({
 }: {
   children: React.ReactNode;
 }) {
-  const { isOpen } = useSidebar();
+  const { isOpen, isHovered } = useSidebar();
+
+  // Calculamos el margen izquierdo basado en el estado de hover
+  const sidebarWidth = isHovered ? "ml-64" : "ml-16";
 
   return (
     <div className="flex">
       <Sidebar />
       <div
-        className={`min-h-screen flex-1 bg-[#fcfaed] transition-all duration-300 ${
-          isOpen ? "ml-64" : "ml-16"
-        }`}
+        className={`min-h-screen flex-1 bg-[#fcfaed] transition-all duration-300 ${sidebarWidth}`}
       >
         <Topbar />
         <main className="p-6">{children}</main>

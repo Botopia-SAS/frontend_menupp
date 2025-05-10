@@ -4,16 +4,26 @@ import { sidebarItems } from "./sidebar.config";
 import SidebarItem from "./SidebarItem";
 
 export default function Sidebar() {
+  const { isHovered, setIsHovered } = useSidebar();
+
   return (
-    <div className="group fixed top-0 left-0 h-screen z-50 bg-[#030b29] text-white transition-all duration-300 flex flex-col w-16 hover:w-64">
-      <div className="flex items-center px-4 py-6 transition-all duration-300 justify-start group-hover:justify-center">
+    <div
+      className="fixed top-0 left-0 h-screen z-50 bg-[#030b29] text-white transition-all duration-300 flex flex-col w-16 hover:w-64"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Sección del título ajustada */}
+      <div
+        className={`flex items-center px-4 py-6 transition-all duration-300 ${
+          isHovered ? "justify-center" : "justify-start"
+        }`}
+      >
         <span className="relative font-bold text-xl text-pink-500">
-          <span className="absolute group-hover:opacity-0 transition-opacity duration-300">
-            m
-          </span>
-          <span className="opacity-0 group-hover:opacity-100 inline-block max-w-0 group-hover:max-w-[160px] overflow-hidden whitespace-nowrap transition-all duration-300">
-            menüpp
-          </span>
+          {!isHovered ? (
+            <span className="transition-opacity duration-300">m</span>
+          ) : (
+            <span className="transition-all duration-300">menüpp</span>
+          )}
         </span>
       </div>
 

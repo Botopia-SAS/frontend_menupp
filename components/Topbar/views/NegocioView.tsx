@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const tabs = [
-  { label: "Marca", href: "/negocio/marca" },
+  { label: "Marca", href: "/negocio" },
   { label: "Sedes", href: "/negocio/sedes" },
   { label: "Usuarios", href: "/negocio/usuarios" },
   { label: "Integraciones", href: "/negocio/integraciones" },

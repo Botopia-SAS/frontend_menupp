@@ -3,16 +3,27 @@
 import { useSidebar } from "@/lib/SidebarContext";
 import Sidebar from "./Sidebar/Sidebar";
 import Topbar from "./Topbar/Topbar";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function LayoutContent({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { isOpen, isHovered } = useSidebar();
+  const { isHovered } = useSidebar();
+  const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
 
-  // Calculamos el margen izquierdo basado en el estado de hover
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isRoot = pathname === "/";
   const sidebarWidth = isHovered ? "ml-64" : "ml-16";
+
+  if (isRoot) return <>{children}</>;
+  if (!mounted) return null; // espera a estar en cliente para evitar mismatch
 
   return (
     <div className="flex">
@@ -21,7 +32,7 @@ export default function LayoutContent({
         className={`min-h-screen flex-1 bg-[#fcfaed] transition-all duration-300 ${sidebarWidth}`}
       >
         <Topbar />
-        <main className="p-6">{children}</main>
+        <main className="p-4">{children}</main>
       </div>
     </div>
   );

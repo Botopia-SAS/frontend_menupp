@@ -3,25 +3,25 @@
 import { usePathname } from "next/navigation";
 import { topbarMap } from "./topbar.config";
 import { Share2, UserCircle } from "lucide-react";
+import { useSidebar } from "@/lib/SidebarContext";
 
 export default function Topbar() {
   const pathname = usePathname();
   const match = topbarMap.find((route) => pathname.startsWith(route.path));
   const ViewComponent = match?.view;
+  const { isHovered } = useSidebar();
+
+  const marginLeft = isHovered ? "16rem" : "4rem"; // Sidebar ancho
 
   return (
     <div
-      className="fixed top-0 right-0 left-0 p-2 transition-all duration-300 bg-[#fcfaed] z-50"
-      style={{ marginLeft: "inherit" }}
+      className="fixed top-0 right-0 transition-all duration-300 z-40 p-4 bg-[#fcfaed]"
+      style={{ left: marginLeft }}
     >
-      <header className="px-6 py-3 bg-white shadow-sm flex items-center justify-between rounded-md">
+      <header className="bg-white shadow-md rounded-xl px-6 py-3 flex items-center justify-between w-full max-w-[calc(100vw-6rem)] mx-auto">
         <div className="flex items-center gap-6">
           <h2 className="text-xl font-semibold">{match?.title || "Panel"}</h2>
-          {ViewComponent && (
-            <div className="flex items-center">
-              <ViewComponent />
-            </div>
-          )}
+          {ViewComponent && <ViewComponent />}
         </div>
 
         <div className="flex items-center gap-3">

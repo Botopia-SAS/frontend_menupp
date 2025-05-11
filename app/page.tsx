@@ -1,15 +1,12 @@
-import { redirect } from "next/navigation";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 import LoginForm from "@/components/Auth/LoginForm";
-import { supabase } from "@/lib/supabase"; // O `createClient()` si usas una factory
 
-export default async function HomePage() {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (session) {
-    redirect("/dashboard");
-  }
+export default function HomePage() {
+  const router = useRouter();
 
   return (
     <main className="min-h-screen flex items-center justify-center">

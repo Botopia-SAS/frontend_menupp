@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { postJSON, AuthResponse } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, AlertCircle } from "lucide-react";
 
@@ -13,13 +13,16 @@ export default function LoginForm() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    setError(null);
 
-    if (error) setError("Correo o contraseña incorrectos.");
-    else router.push("/dashboard");
+    try {
+      const data = await postJSON<AuthResponse>("/auth/login", { email, password });
+      // Guarda el token y redirige
+      localStorage.setItem("token", data.token);
+      router.push("/dashboard");
+    } catch (err: any) {
+      setError(err.message || "Error al iniciar sesión");
+    }
   };
 
   return (
@@ -74,7 +77,7 @@ export default function LoginForm() {
             </button>
           </div>
 
-          {/* Mensaje de error Supabase */}
+          {/* Mensaje de error */}
           {error && <p className="text-[#EF4444] text-sm">{error}</p>}
 
           {/* Botón */}

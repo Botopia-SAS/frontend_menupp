@@ -13,7 +13,7 @@ export type SedeProps = { sedeId: string };
 const PerfilIndex: React.FC<SedeProps> = ({ sedeId }) => (
   <div className="space-y-8 px-4 py-6">
     <DatosBasicos sedeId={sedeId} />
-    <ImagenPunto sedeId={sedeId} />
+    <ImagenPunto  />
     <Ubicacion sedeId={sedeId} />
     <InformacionContacto sedeId={sedeId} />
     <NotificacionesClientes sedeId={sedeId} />

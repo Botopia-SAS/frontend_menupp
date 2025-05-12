@@ -97,18 +97,15 @@ const Metodos: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
     transferencia: false,
     online: false,
   });
-
   const [modalTipo, setModalTipo] = useState<ModalTipo>(null);
   const [modoFormulario, setModoFormulario] = useState(false);
 
   const toggle = (id: string) =>
     setActivos((prev) => ({ ...prev, [id]: !prev[id] }));
-
   const abrirModal = (tipo: ModalTipo) => {
     setModalTipo(tipo);
     setModoFormulario(false);
   };
-
   const cerrarModal = () => setModalTipo(null);
 
   return (
@@ -141,7 +138,7 @@ const Metodos: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
         </ul>
       </section>
 
-      {/* Modal dinámico */}
+      {/* Modal de transferencia */}
       {modalTipo === "transferencia" && (
         <Modal onClose={cerrarModal}>
           {!modoFormulario ? (
@@ -158,35 +155,14 @@ const Metodos: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
             </div>
           ) : (
             <div className="p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-center">
-                Transferencia personalizada
-              </h2>
-              <input
-                className="w-full p-2 border border-gray-300 rounded-md"
-                placeholder="Nombre de la cuenta (Privado)"
-              />
-              <input
-                className="w-full p-2 border border-gray-300 rounded-md"
-                placeholder="Banco y tipo de cuenta"
-              />
-              <input
-                className="w-full p-2 border border-gray-300 rounded-md"
-                placeholder="# de la cuenta"
-              />
-              <input
-                className="w-full p-2 border border-gray-300 rounded-md"
-                placeholder="Datos del titular, etc..."
-              />
-              <button className="w-full py-2 rounded-md bg-indigo-400 text-white mt-4 hover:bg-indigo-500 transition">
-                Guardar
-              </button>
+              {/* ... formulario de transferencia */}
             </div>
           )}
         </Modal>
       )}
 
-     // Componente Metodos.tsx (parte afectada)
-     {modalTipo === "online" && (
+      {/* Modal de pago online */}
+      {modalTipo === "online" && (
         <Modal onClose={cerrarModal}>
           <div className="p-6 text-center space-y-4">
             <h2 className="text-lg font-semibold mb-2">

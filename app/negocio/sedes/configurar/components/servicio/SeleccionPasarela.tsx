@@ -1,13 +1,16 @@
-"use client";
+// app/negocio/sedes/configurar/components/servicio/SeleccionPasarela.tsx
+'use client';
 
 import React from "react";
 
 type Props = {
   onClose: () => void;
-  sedeId: string; // Añadir esta línea
+  sedeId: string; // seguimos recibiendo este prop para futuro uso
 };
 
-const SeleccionPasarela: React.FC<Props> = ({ onClose, sedeId }) => {
+const SeleccionPasarela: React.FC<Props> = ({ onClose, sedeId: _sedeId }) => {
+  // Más adelante podrás usar _sedeId para cargar datos específicos de la sede
+
   return (
     <div className="p-6 text-black max-w-md">
       {/* Título */}

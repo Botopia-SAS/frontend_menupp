@@ -1,9 +1,9 @@
+// app/negocio/sedes/configurar/components/perfil/ImagenPunto.tsx
 'use client';
 
 import React from "react";
-import type { SedeProps } from "./DatosBasicos"; // re-usar alias común
 
-const ImagenPunto: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
+const ImagenPunto: React.FC = () => {
   /* Más adelante: subir / mostrar imagen que corresponda a la sede */
 
   return (
@@ -34,7 +34,6 @@ const ImagenPunto: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
                 <path d="M2.46 12c1.27-4.06 5.06-7 9.54-7s8.27 2.94 9.54 7c-1.27 4.06-5.06 7-9.54 7s-8.27-2.94-9.54-7z" />
               </svg>
             </button>
-
             {/* Cambiar */}
             <button
               type="button"
@@ -55,7 +54,6 @@ const ImagenPunto: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
                 <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z" />
               </svg>
             </button>
-
             {/* Eliminar */}
             <button
               type="button"
@@ -80,7 +78,6 @@ const ImagenPunto: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
             </button>
           </div>
         </div>
-
         <p className="text-xs text-gray-500 mt-1">
           Dimensiones recomendadas: 1920 × 1080&nbsp;px
         </p>

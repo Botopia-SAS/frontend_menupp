@@ -1,4 +1,5 @@
-"use client";
+// app/negocio/sedes/configurar/components/servicio/Metodos.tsx
+'use client';
 
 import React, { useState } from "react";
 import { FaCog } from "react-icons/fa";
@@ -89,7 +90,7 @@ const Toggle = ({
   </label>
 );
 
-const Metodos: React.FC<SedeProps> = ({ sedeId }) => {
+const Metodos: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
   const [activos, setActivos] = useState<Record<string, boolean>>({
     efectivo: false,
     datafono: false,
@@ -123,9 +124,7 @@ const Metodos: React.FC<SedeProps> = ({ sedeId }) => {
             <li key={id} className="flex items-center gap-4">
               <span className="text-blue-900">{icon}</span>
               <span className="flex-1 font-medium">{nombre}</span>
-
               <Toggle checked={activos[id]} onChange={() => toggle(id)} />
-
               <button
                 type="button"
                 aria-label={`Configurar ${nombre}`}
@@ -144,7 +143,7 @@ const Metodos: React.FC<SedeProps> = ({ sedeId }) => {
 
       {/* Modal dinámico */}
       {modalTipo === "transferencia" && (
-        <Modal onClose={() => setModalTipo(null)}>
+        <Modal onClose={cerrarModal}>
           {!modoFormulario ? (
             <div className="text-center p-6">
               <h2 className="text-lg font-semibold mb-4">
@@ -187,7 +186,7 @@ const Metodos: React.FC<SedeProps> = ({ sedeId }) => {
       )}
 
       {modalTipo === "online" && (
-        <Modal onClose={() => setModalTipo(null)}>
+        <Modal onClose={cerrarModal}>
           <div className="p-6 text-center space-y-4">
             <h2 className="text-lg font-semibold mb-2">
               Configuración de pago en línea

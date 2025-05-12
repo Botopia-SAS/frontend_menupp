@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase";
 import LoginForm from "@/components/Auth/LoginForm";
 
 export default function HomePage() {

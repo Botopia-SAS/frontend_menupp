@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Store, GripVertical } from "lucide-react";
+import { Plus, Store } from "lucide-react";
 import SedeItem from "./SedeItem";
 import CreateSedeModal from "./CreateSedeModal";
 

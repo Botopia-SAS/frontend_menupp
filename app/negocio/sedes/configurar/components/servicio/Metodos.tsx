@@ -90,7 +90,7 @@ const Toggle = ({
   </label>
 );
 
-const Metodos: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
+const Metodos: React.FC = () => {
   const [activos, setActivos] = useState<Record<string, boolean>>({
     efectivo: false,
     datafono: false,

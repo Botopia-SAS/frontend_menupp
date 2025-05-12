@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Cog, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 interface CategoriesMenuProps {
   locationId: string;

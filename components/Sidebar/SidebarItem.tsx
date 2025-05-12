@@ -1,17 +1,27 @@
+'use client';
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/lib/SidebarContext";
+import type { ComponentType, SVGProps } from "react";
+
+interface SidebarItemProps {
+  label: string;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
+  path: string;
+  disabled?: boolean;
+}
 
 export default function SidebarItem({
   label,
   icon: Icon,
   path,
   disabled = false,
-}: any) {
+}: SidebarItemProps) {
   const pathname = usePathname();
   const isActive = pathname === path;
-  const { isHovered } = useSidebar(); // Usamos el contexto para detectar el hover
+  const { isHovered } = useSidebar();
 
   return (
     <Link href={path}>
@@ -23,11 +33,9 @@ export default function SidebarItem({
         )}
       >
         <Icon className="w-5 h-5 min-w-[20px]" />
-
         <span
           className={cn(
             "ml-3 overflow-hidden whitespace-nowrap transition-all duration-300",
-            // Cambiamos la lógica de group-hover por nuestro estado isHovered
             !isHovered
               ? "max-w-0 opacity-0 scale-95"
               : "max-w-[180px] opacity-100 scale-100"

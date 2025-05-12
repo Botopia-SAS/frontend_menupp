@@ -1,8 +1,9 @@
-"use client";
+'use client';
+
 import { useState } from "react";
 import { postJSON } from "@/lib/api";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function RegisterForm() {
   const [restaurante, setRestaurante] = useState("");
@@ -28,8 +29,12 @@ export default function RegisterForm() {
       });
       setSuccess(true);
       setTimeout(() => router.push("/login"), 1500);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Error al crear la cuenta");
+      }
     }
   };
 

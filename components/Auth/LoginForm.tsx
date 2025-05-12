@@ -1,4 +1,5 @@
-"use client";
+'use client'
+
 import { useState } from "react";
 import { postJSON, AuthResponse } from "@/lib/api";
 import { useRouter } from "next/navigation";
@@ -16,12 +17,19 @@ export default function LoginForm() {
     setError(null);
 
     try {
-      const data = await postJSON<AuthResponse>("/auth/login", { email, password });
+      const data = await postJSON<AuthResponse>(
+        "/auth/login",
+        { email, password }
+      );
       // Guarda el token y redirige
       localStorage.setItem("token", data.token);
       router.push("/negocio");
-    } catch (err: any) {
-      setError(err.message || "Error al iniciar sesión");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Error al iniciar sesión");
+      }
     }
   };
 

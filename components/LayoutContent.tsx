@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "@/lib/SidebarContext";
-import Sidebar from "./Sidebar/Sidebar";
+import Sidebar from "@/components/Sidebar/Sidebar";
 import Topbar from "./Topbar/Topbar";
 
 export default function LayoutContent({
@@ -21,7 +21,7 @@ export default function LayoutContent({
   }, []);
   if (!mounted) return null;
 
-  // Rutas en las que no queremos ni sidebar ni topbar
+  // Rutas en las que NO queremos ni sidebar ni topbar
   const hideNavPaths = ["/", "/login", "/register"];
   if (hideNavPaths.includes(pathname)) {
     return <>{children}</>;
@@ -32,13 +32,20 @@ export default function LayoutContent({
 
   return (
     <div className="flex">
+      {/* Sidebar (desktop y tablet) */}
       <Sidebar />
 
+      {/* Contenedor principal, desplazado según el ancho de la sidebar */}
       <div
-        className={`min-h-screen flex-1 bg-[#f8f2e0] transition-all duration-300 ${sidebarWidth}`}
+        className={`min-h-screen flex-1 bg-[#f8f2e0]
+                    transition-all duration-300 ${sidebarWidth}`}
       >
+        {/* Topbar encima del contenido */}
         <Topbar />
-        <main className="p-4">{children}</main>
+
+        <main className="p-4">
+          {children}
+        </main>
       </div>
     </div>
   );

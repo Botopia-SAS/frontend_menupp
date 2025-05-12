@@ -42,7 +42,7 @@ export default function ConfigurarSedePage() {
               Perfil del punto
             </h2>
             <DatosBasicos sedeId={sede} />
-            <ImagenPunto sedeId={sede} />
+            <ImagenPunto  />
             <InformacionContacto sedeId={sede} />
             <NotificacionesClientes sedeId={sede} />
             <Ubicacion sedeId={sede} />
@@ -52,7 +52,7 @@ export default function ConfigurarSedePage() {
       case "servicio":
         return (
           <div className="space-y-8">
-            <Metodos sedeId={sede} />
+            <Metodos  />
           </div>
         );
 

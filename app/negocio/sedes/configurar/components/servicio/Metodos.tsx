@@ -186,7 +186,7 @@ const Metodos: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
       )}
 
      // Componente Metodos.tsx (parte afectada)
-      {modalTipo === "online" && (
+     {modalTipo === "online" && (
         <Modal onClose={cerrarModal}>
           <div className="p-6 text-center space-y-4">
             <h2 className="text-lg font-semibold mb-2">
@@ -205,6 +205,7 @@ const Metodos: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
         </Modal>
       )}
 
+      {/* Modal de selección de pasarela */}
       {modalTipo === "seleccion-pasarela" && (
         <Modal onClose={cerrarModal}>
           <SeleccionPasarela onClose={cerrarModal} sedeId={_sedeId} />

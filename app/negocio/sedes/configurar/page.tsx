@@ -4,7 +4,7 @@ import { useState } from "react";
 import SideMenu from "./components/SideMenu";
 
 /** ──────────────────────────────────────────────────────────
- *  Importaciones de la sección PERFIL (ya implementadas)
+ *  Sección PERFIL (ya implementadas)
  *  ────────────────────────────────────────────────────────── */
 import {
   DatosBasicos,
@@ -15,24 +15,19 @@ import {
 } from "./components/perfil";
 
 /** ──────────────────────────────────────────────────────────
- *  Las demás secciones aún no están listas.
- *  Déjalas comentadas para evitar errores de compilación.
- *  Quita el comentario cuando crees los componentes.
+ *  Secciones activas
  *  ────────────────────────────────────────────────────────── */
-import { Metodos } from "./components/servicio";
-// import { ConfiguracionEntrega, ZonasCobertura } from "./components/domicilios";
-// import { ConfiguracionRecoger } from "./components/recoger";
+import { Metodos as MetodosServicio } from "./components/servicio";
+import PaginaDomicilios from "./components/domicilios/Pagina"; // o la ruta correcta
 
 export default function ConfigurarSedePage() {
   const [activeSection, setActiveSection] = useState<string>("perfil");
   const [sede, setSede] = useState<string>("bogota");
 
-  /* ── Handlers ─────────────────────────────────────────────── */
   const handleSectionChange = (sectionId: string) =>
     setActiveSection(sectionId);
   const handleSedeChange = (sedeId: string) => setSede(sedeId);
 
-  /* ── Render dinámico por sección ──────────────────────────── */
   const renderContent = () => {
     switch (activeSection) {
       case "perfil":
@@ -42,7 +37,7 @@ export default function ConfigurarSedePage() {
               Perfil del punto
             </h2>
             <DatosBasicos sedeId={sede} />
-            <ImagenPunto  />
+            <ImagenPunto />
             <InformacionContacto sedeId={sede} />
             <NotificacionesClientes sedeId={sede} />
             <Ubicacion sedeId={sede} />
@@ -52,7 +47,31 @@ export default function ConfigurarSedePage() {
       case "servicio":
         return (
           <div className="space-y-8">
-            <Metodos  />
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              Servicio a la mesa
+            </h2>
+            <MetodosServicio />
+          </div>
+        );
+
+      case "domicilios":
+        return (
+          <div className="space-y-8">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              Domicilios
+            </h2>
+            <MetodosServicio />
+            <PaginaDomicilios sedeId={sede} />
+          </div>
+        );
+      case "recoger":
+        return (
+          <div className="space-y-8">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              Pedidos para recoger
+            </h2>
+            <MetodosServicio />
+            <PaginaDomicilios sedeId={sede} />
           </div>
         );
 

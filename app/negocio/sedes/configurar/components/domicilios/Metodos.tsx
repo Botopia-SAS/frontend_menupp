@@ -4,7 +4,6 @@
 import React, { useState } from "react";
 import { FaCog } from "react-icons/fa";
 import Modal from "@/components/ui/Modal";
-import SeleccionPasarela from "./SeleccionPasarela";
 
 export type SedeProps = { sedeId: string };
 
@@ -178,13 +177,6 @@ const Metodos: React.FC = () => {
               Configurar pasarela
             </button>
           </div>
-        </Modal>
-      )}
-
-      {/* Modal de selección de pasarela */}
-      {modalTipo === "seleccion-pasarela" && (
-        <Modal onClose={cerrarModal}>
-          <SeleccionPasarela onClose={cerrarModal} />
         </Modal>
       )}
     </>

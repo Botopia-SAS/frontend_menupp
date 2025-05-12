@@ -19,7 +19,7 @@ import {
  *  Déjalas comentadas para evitar errores de compilación.
  *  Quita el comentario cuando crees los componentes.
  *  ────────────────────────────────────────────────────────── */
-// import { Horarios, OpcionesMesa } from "./components/servicio";
+import { Metodos } from "./components/servicio";
 // import { ConfiguracionEntrega, ZonasCobertura } from "./components/domicilios";
 // import { ConfiguracionRecoger } from "./components/recoger";
 
@@ -49,38 +49,12 @@ export default function ConfigurarSedePage() {
           </div>
         );
 
-      /* ── Secciones pendientes ──────────────────────────────── */
-      // case "servicio":
-      //   return (
-      //     <div className="space-y-8">
-      //       <h2 className="text-xl font-semibold text-gray-900 mb-4">
-      //         Servicio a la mesa
-      //       </h2>
-      //       <Horarios sedeId={sede} />
-      //       <OpcionesMesa sedeId={sede} />
-      //     </div>
-      //   );
-
-      // case "domicilios":
-      //   return (
-      //     <div className="space-y-8">
-      //       <h2 className="text-xl font-semibold text-gray-900 mb-4">
-      //         Domicilios
-      //       </h2>
-      //       <ConfiguracionEntrega sedeId={sede} />
-      //       <ZonasCobertura sedeId={sede} />
-      //     </div>
-      //   );
-
-      // case "recoger":
-      //   return (
-      //     <div className="space-y-8">
-      //       <h2 className="text-xl font-semibold text-gray-900 mb-4">
-      //         Pedidos para recoger
-      //       </h2>
-      //       <ConfiguracionRecoger sedeId={sede} />
-      //     </div>
-      //   );
+      case "servicio":
+        return (
+          <div className="space-y-8">
+            <Metodos sedeId={sede} />
+          </div>
+        );
 
       default:
         return <div className="text-black">Selecciona una sección</div>;
@@ -99,7 +73,7 @@ export default function ConfigurarSedePage() {
       </div>
 
       {/* Contenido principal */}
-      <div>{renderContent()}</div>
+      <div className="w-full lg:w-2/3">{renderContent()}</div>
     </div>
   );
 }

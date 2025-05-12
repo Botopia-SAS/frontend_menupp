@@ -35,25 +35,25 @@ const SideMenu = ({
       id: "perfil",
       title: "Perfil del punto",
       description: "Configura nombre, teléfonos, dirección y más",
-      route: "/negocio/sedes/configurar/perfil",
+      route: "/negocio/sedes/configurar/",
     },
     {
       id: "servicio",
       title: "Servicio a la mesa",
       description: "Configura horarios, teléfonos y más",
-      route: "/negocio/sedes/configurar/servicio",
+      route: "/negocio/sedes/configurar/",
     },
     {
       id: "domicilios",
       title: "Domicilios",
       description: "Configura nombre, horarios, teléfonos, dirección y más",
-      route: "/negocio/sedes/configurar/domicilios",
+      route: "/negocio/sedes/configurar/",
     },
     {
       id: "recoger",
       title: "Pedidos para recoger",
       description: "Configura nombre, horarios, teléfonos, dirección y más",
-      route: "/negocio/sedes/configurar/recoger",
+      route: "/negocio/sedes/configurar/",
     },
   ];
 

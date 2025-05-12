@@ -15,17 +15,19 @@ export default function Topbar() {
 
   return (
     <div
-      className="fixed top-0 right-0 transition-all duration-300 z-40 p-4 bg-[#fcfaed]"
+      className="fixed top-0 right-0 transition-all duration-300 z-40 p-4 bg-[#f8f2e0]"
       style={{ left: marginLeft }}
     >
-      <header className="bg-white shadow-md rounded-xl px-6 py-3 flex items-center justify-between w-full max-w-[calc(100vw-6rem)] mx-auto">
+      <header className="bg-[#070068] shadow-md rounded-xl px-6 py-3 flex items-center justify-between w-full max-w-[calc(100vw-6rem)] mx-auto">
         <div className="flex items-center gap-6">
-          <h2 className="text-xl font-semibold">{match?.title || "Panel"}</h2>
+          <h2 className="text-xl font-semibold text-white">
+            {match?.title || "Panel"}
+          </h2>
           {ViewComponent && <ViewComponent />}
         </div>
 
-        <div className="flex items-center gap-3">
-          <button className="flex items-center gap-1 border px-3 py-1 rounded-full text-sm text-gray-700 hover:shadow transition">
+        <div className="flex items-center gap-3 ">
+          <button className="flex items-center gap-1 border px-3 py-1 rounded-full text-sm text-white hover:shadow transition">
             <Share2 size={16} />
             Compartir
           </button>

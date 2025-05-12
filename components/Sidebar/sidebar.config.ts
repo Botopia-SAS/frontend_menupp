@@ -1,3 +1,4 @@
+// components/sidebar.config.ts
 import {
   Home,
   BookOpen,

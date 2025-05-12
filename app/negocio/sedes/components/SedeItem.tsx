@@ -9,10 +9,7 @@ interface SedeItemProps {
   onConfigure: () => void;
 }
 
-export default function SedeItem({
-  name,
-  onDelete,
-}: SedeItemProps) {
+export default function SedeItem({ name, onDelete }: SedeItemProps) {
   const router = useRouter(); // ✅ ahora está dentro del componente
 
   return (

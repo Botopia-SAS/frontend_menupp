@@ -5,12 +5,10 @@ import React from "react";
 
 type Props = {
   onClose: () => void;
-  sedeId: string; // seguimos recibiendo este prop para futuro uso
+  // sedeId se puede volver a añadir cuando lo necesites
 };
 
-const SeleccionPasarela: React.FC<Props> = ({ onClose, sedeId: _sedeId }) => {
-  // Más adelante podrás usar _sedeId para cargar datos específicos de la sede
-
+const SeleccionPasarela: React.FC<Props> = ({ onClose }) => {
   return (
     <div className="p-6 text-black max-w-md">
       {/* Título */}

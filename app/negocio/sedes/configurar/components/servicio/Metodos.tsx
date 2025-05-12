@@ -184,7 +184,7 @@ const Metodos: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
       {/* Modal de selección de pasarela */}
       {modalTipo === "seleccion-pasarela" && (
         <Modal onClose={cerrarModal}>
-          <SeleccionPasarela onClose={cerrarModal} sedeId={_sedeId} />
+          <SeleccionPasarela onClose={cerrarModal} />
         </Modal>
       )}
     </>

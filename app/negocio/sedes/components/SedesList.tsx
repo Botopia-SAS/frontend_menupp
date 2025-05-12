@@ -20,10 +20,10 @@ export default function SedesList() {
 
   return (
     <>
-      <div className="bg-white rounded-2xl shadow p-6 space-y-4">
+      <div className="bg-[#f8f8f7] rounded-2xl shadow p-6 space-y-4">
         {/* Encabezado */}
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2 font-semibold text-lg">
+        <div className="flex justify-between items-center text-grey-300">
+          <div className="flex items-center gap-2 font-semibold text-lg text-black">
             <Store size={20} />
             Sedes de tu marca
           </div>
@@ -33,7 +33,7 @@ export default function SedesList() {
         </div>
 
         {/* Lista de sedes */}
-        <div className="space-y-2">
+        <div className="space-y-2 text-black">
           {sedes.map((sede) => (
             <SedeItem
               key={sede}

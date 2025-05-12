@@ -45,7 +45,7 @@ function TabNav({
   pathname: string;
 }) {
   return (
-    <nav className="flex gap-5 mt-1">
+    <nav className="flex gap-5 mt-1 ">
       {tabs.map((tab) => (
         <Link href={tab.href} key={tab.href}>
           <span

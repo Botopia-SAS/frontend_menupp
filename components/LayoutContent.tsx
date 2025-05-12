@@ -29,7 +29,7 @@ export default function LayoutContent({
     <div className="flex">
       <Sidebar />
       <div
-        className={`min-h-screen flex-1 bg-[#fcfaed] transition-all duration-300 ${sidebarWidth}`}
+        className={`min-h-screen flex-1 bg-[#f8f2e0] transition-all duration-300 ${sidebarWidth}`}
       >
         <Topbar />
         <main className="p-4">{children}</main>

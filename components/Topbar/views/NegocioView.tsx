@@ -22,8 +22,8 @@ export default function NegocioView() {
             className={cn(
               "text-sm pb-1 border-b-2 transition-all",
               pathname === tab.href
-                ? "border-black text-black font-semibold"
-                : "border-transparent text-gray-400 hover:text-black"
+                ? "border-white text-white font-semibold"
+                : "border-transparent text-white hover:text-white"
             )}
           >
             {tab.label}

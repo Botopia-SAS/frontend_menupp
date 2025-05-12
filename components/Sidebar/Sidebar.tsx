@@ -8,7 +8,7 @@ export default function Sidebar() {
 
   return (
     <div
-      className="fixed top-0 left-0 h-screen z-50 bg-[#030b29] text-white transition-all duration-300 flex flex-col w-16 hover:w-64"
+      className="fixed top-0 left-0 h-screen z-50 bg-[#3b0ac2] text-white transition-all duration-300 flex flex-col w-16 hover:w-64"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -18,7 +18,7 @@ export default function Sidebar() {
           isHovered ? "justify-center" : "justify-start"
         }`}
       >
-        <span className="relative font-bold text-xl text-pink-500">
+        <span className="relative font-bold text-xl text-white-500">
           {!isHovered ? (
             <span className="transition-opacity duration-300">m</span>
           ) : (

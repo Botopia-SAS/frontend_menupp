@@ -26,9 +26,9 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#111827] flex items-center justify-center">
+    <div className="min-h-screen w-full bg-[#1c0049] flex items-center justify-center">
       <div className="w-full max-w-md px-6">
-        <h1 className="text-5xl font-bold text-[#EF4444] text-center mb-2">
+        <h1 className="text-5xl font-bold text-[#9759c0] text-center mb-2">
           menüpp
         </h1>
         <p className="text-white text-center mb-8 font-semibold">
@@ -48,7 +48,7 @@ export default function LoginForm() {
             />
             {!email && (
               <>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#EF4444]">
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#4447ef]">
                   <AlertCircle size={20} />
                 </div>
                 <p className="text-[#EF4444] text-sm mt-1">

@@ -1,13 +1,12 @@
 "use client";
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { postJSON } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, AlertCircle } from "lucide-react";
 
 export default function RegisterForm() {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
   const [restaurante, setRestaurante] = useState("");
+  const [telefono, setTelefono] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
@@ -20,23 +19,17 @@ export default function RegisterForm() {
     setError(null);
     setSuccess(false);
 
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          nombre,
-          apellido,
-          restaurante,
-        },
-      },
-    });
-
-    if (error) {
-      setError(error.message);
-    } else {
+    try {
+      await postJSON("/auth/register", {
+        name: restaurante,
+        mobile: telefono,
+        email,
+        password,
+      });
       setSuccess(true);
-      setTimeout(() => router.push("/"), 1500);
+      setTimeout(() => router.push("/login"), 1500);
+    } catch (err: any) {
+      setError(err.message);
     }
   };
 
@@ -51,27 +44,7 @@ export default function RegisterForm() {
         </p>
 
         <form onSubmit={handleRegister} className="space-y-6">
-          {/* Nombre */}
-          <input
-            type="text"
-            placeholder="Nombre"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            required
-            className="w-full px-4 py-3 rounded-full bg-white text-black placeholder:text-[#9CA3AF] outline-none"
-          />
-
-          {/* Apellido */}
-          <input
-            type="text"
-            placeholder="Apellido"
-            value={apellido}
-            onChange={(e) => setApellido(e.target.value)}
-            required
-            className="w-full px-4 py-3 rounded-full bg-white text-black placeholder:text-[#9CA3AF] outline-none"
-          />
-
-          {/* Restaurante */}
+          {/* Nombre del Restaurante */}
           <input
             type="text"
             placeholder="Nombre del restaurante"
@@ -81,7 +54,17 @@ export default function RegisterForm() {
             className="w-full px-4 py-3 rounded-full bg-white text-black placeholder:text-[#9CA3AF] outline-none"
           />
 
-          {/* Email */}
+          {/* Teléfono */}
+          <input
+            type="tel"
+            placeholder="Teléfono"
+            value={telefono}
+            onChange={(e) => setTelefono(e.target.value)}
+            required
+            className="w-full px-4 py-3 rounded-full bg-white text-black placeholder:text-[#9CA3AF] outline-none"
+          />
+
+          {/* Correo Electrónico */}
           <input
             type="email"
             placeholder="Correo Electrónico"
@@ -129,7 +112,7 @@ export default function RegisterForm() {
           {/* Link login */}
           <p className="text-[#460770] text-center text-sm">
             ¿Ya tienes cuenta?{" "}
-            <a href="/" className="underline hover:text-[#EF4444]">
+            <a href="/login" className="underline hover:text-[#EF4444]">
               Inicia sesión
             </a>
           </p>

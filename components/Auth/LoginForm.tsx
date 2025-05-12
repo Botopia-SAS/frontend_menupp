@@ -19,7 +19,7 @@ export default function LoginForm() {
       const data = await postJSON<AuthResponse>("/auth/login", { email, password });
       // Guarda el token y redirige
       localStorage.setItem("token", data.token);
-      router.push("/dashboard");
+      router.push("/negocio");
     } catch (err: any) {
       setError(err.message || "Error al iniciar sesión");
     }

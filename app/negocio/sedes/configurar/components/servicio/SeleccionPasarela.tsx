@@ -4,9 +4,10 @@ import React from "react";
 
 type Props = {
   onClose: () => void;
+  sedeId: string; // Añadir esta línea
 };
 
-const SeleccionPasarela: React.FC<Props> = ({ onClose }) => {
+const SeleccionPasarela: React.FC<Props> = ({ onClose, sedeId }) => {
   return (
     <div className="p-6 text-black max-w-md">
       {/* Título */}

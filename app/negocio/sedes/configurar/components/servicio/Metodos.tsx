@@ -185,6 +185,7 @@ const Metodos: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
         </Modal>
       )}
 
+     // Componente Metodos.tsx (parte afectada)
       {modalTipo === "online" && (
         <Modal onClose={cerrarModal}>
           <div className="p-6 text-center space-y-4">
@@ -194,15 +195,19 @@ const Metodos: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
             <p className="text-sm text-gray-600">
               Conecta tu pasarela de pagos para aceptar transacciones online.
             </p>
-            <button className="mt-4 px-4 py-2 rounded-md bg-indigo-500 text-white hover:bg-indigo-600">
+            <button
+              onClick={() => setModalTipo("seleccion-pasarela")}
+              className="mt-4 px-4 py-2 rounded-md bg-indigo-500 text-white hover:bg-indigo-600"
+            >
               Configurar pasarela
             </button>
           </div>
         </Modal>
       )}
+
       {modalTipo === "seleccion-pasarela" && (
         <Modal onClose={cerrarModal}>
-          <SeleccionPasarela onClose={cerrarModal} />
+          <SeleccionPasarela onClose={cerrarModal} sedeId={_sedeId} />
         </Modal>
       )}
     </>

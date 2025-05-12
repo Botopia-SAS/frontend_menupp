@@ -69,7 +69,7 @@ const SideMenu = ({
       // Si no hay coincidencia, establecer la primera sección como activa
       setActiveSectionId(menuSections[0].id);
     }
-  }, [pathname]);
+  }, [pathname, menuSections]);
 
   // Maneja el cambio de sede
   const handleSedeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

@@ -6,7 +6,7 @@ type PaginaProps = {
   sedeId: string;
 };
 
-const Pagina: React.FC<PaginaProps> = ({ sedeId }) => {
+const Pagina: React.FC<PaginaProps> = ({}) => {
   const [url, setUrl] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

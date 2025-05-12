@@ -1,10 +1,9 @@
-// File: app/configurar/components/perfil/ImagenPunto.tsx
-"use client";
+'use client';
 
 import React from "react";
 import type { SedeProps } from "./DatosBasicos"; // re-usar alias común
 
-const ImagenPunto: React.FC<SedeProps> = ({ sedeId }) => {
+const ImagenPunto: React.FC<SedeProps> = ({ sedeId: _sedeId }) => {
   /* Más adelante: subir / mostrar imagen que corresponda a la sede */
 
   return (

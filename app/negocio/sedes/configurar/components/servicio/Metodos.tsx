@@ -108,6 +108,8 @@ const Metodos: React.FC<SedeProps> = ({ sedeId }) => {
     setModoFormulario(false);
   };
 
+  const cerrarModal = () => setModalTipo(null);
+
   return (
     <>
       <section className="bg-white rounded-lg shadow p-6 mb-6 text-black">

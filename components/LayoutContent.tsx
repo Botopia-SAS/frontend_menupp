@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
+import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { useSidebar } from "@/lib/SidebarContext";
 import Sidebar from "./Sidebar/Sidebar";
 import Topbar from "./Topbar/Topbar";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export default function LayoutContent({
   children,
@@ -15,19 +15,25 @@ export default function LayoutContent({
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
 
+  // Espera a montar para evitar mismatches SSR/CSR
   useEffect(() => {
     setMounted(true);
   }, []);
+  if (!mounted) return null;
 
-  const isRoot = pathname === "/";
+  // Rutas en las que no queremos ni sidebar ni topbar
+  const hideNavPaths = ["/", "/login", "/register"];
+  if (hideNavPaths.includes(pathname)) {
+    return <>{children}</>;
+  }
+
+  // En el resto mostramos la navegación
   const sidebarWidth = isHovered ? "ml-64" : "ml-16";
-
-  if (isRoot) return <>{children}</>;
-  if (!mounted) return null; // espera a estar en cliente para evitar mismatch
 
   return (
     <div className="flex">
       <Sidebar />
+
       <div
         className={`min-h-screen flex-1 bg-[#f8f2e0] transition-all duration-300 ${sidebarWidth}`}
       >

@@ -2,30 +2,6 @@
 
 const integraciones = [
   {
-    nombre: "Siesa",
-    descripcion:
-      "Integración con Sistema POS para pedidos. Sirve para facturación y generación de comanda.",
-    logo: "/logos/1.png",
-  },
-  {
-    nombre: "Restaurant.pe",
-    descripcion:
-      "Integración con Sistema POS para pedidos. Sirve para facturación y generación de comanda.",
-    logo: "/logos/2.png",
-  },
-  {
-    nombre: "Velocity",
-    descripcion:
-      "Integración con Sistema POS para pedidos. Sirve para facturación y generación de comanda.",
-    logo: "/logos/3.png",
-  },
-  {
-    nombre: "Picker",
-    descripcion:
-      "Integración con Picker conectándote con +200K repartidores de +10 empresas de delivery de tu ciudad.",
-    logo: "/logos/4.png",
-  },
-  {
     nombre: "Whatsapp Web",
     descripcion:
       "Integración con WhatsApp Web para pedidos. Sirve para recibir pedidos y generar respuestas automatizadas.",

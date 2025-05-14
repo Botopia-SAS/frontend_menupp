@@ -1,31 +1,22 @@
 "use client";
 import React, { useState } from "react";
-import { Settings as SettingsIcon } from "lucide-react";
-import { Switch } from "@/components/ui/switch"; // shadcn/ui
+import {
+  Settings as SettingsIcon,
+  GripVertical,
+  Mail,
+  Home,
+} from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import OptionDropdown from "./OptionDropdown";
 import EditOptionModal from "./EditOptionModal";
 import clsx from "clsx";
-import {
-  GripVertical,
-  Mail,
-  Home,
-  Settings,
-  // añade los íconos posibles
-} from "lucide-react";
-
-const iconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
-  GripVertical,
-  Mail,
-  Home,
-  Settings,
-};
 
 export type Option = {
   id: string;
   label: string;
-  icon: string; // nombre del ícono de lucide-react
+  icon: string;
   enabled: boolean;
 };
 
@@ -39,13 +30,12 @@ export default function OptionItem({ option, onUpdate, onDelete }: Props) {
   const [showDD, setShowDD] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
-  // Map icon names to Lucide icon components
+  // ✅ Definir iconos disponibles para el map
   const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
     GripVertical,
+    Mail,
+    Home,
     Settings: SettingsIcon,
-    // Add more icons here as needed, e.g.:
-    // Home: HomeIcon,
-    // User: UserIcon,
   };
 
   const { attributes, listeners, setNodeRef, transform, transition } =

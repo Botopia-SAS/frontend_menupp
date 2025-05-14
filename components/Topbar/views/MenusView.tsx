@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronRight } from "lucide-react";
 
 const tabs = [
-  { label: "Menús", href: "/menus/menu" },
+  { label: "Menús", href: "/menus" },
   { label: "Homepage", href: "/menus/homepage" },
 ];
 

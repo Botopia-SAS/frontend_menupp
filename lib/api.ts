@@ -1,30 +1,23 @@
 // lib/api.ts
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
 
-interface ApiError {
-  error?: string;
-}
+interface ApiError { error?: string; }
 
+/**
+ * Hace un fetch y lanza un Error si status >= 400.
+ * Incluye siempre las cookies (HttpOnly token).
+ */
 async function request<T>(
   path: string,
   options: RequestInit = {}
 ): Promise<T> {
-  let token: string | null = null;
-  if (typeof window !== 'undefined') {
-    token = localStorage.getItem('token');
-  }
-
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-    ...((options.headers as Record<string, string>) ?? {}),
-  };
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
-  }
-
   const res = await fetch(`${API_BASE}${path}`, {
     ...options,
-    headers,
+    credentials: 'include',              // ← aquí permitimos cookies
+    headers: {
+      'Content-Type': 'application/json',
+      ...((options.headers as Record<string, string>) ?? {}),
+    },
   });
 
   if (!res.ok) {
@@ -35,6 +28,7 @@ async function request<T>(
   return res.json();
 }
 
+/** POST JSON helper */
 export function postJSON<T>(path: string, body: unknown): Promise<T> {
   return request<T>(path, {
     method: 'POST',
@@ -42,10 +36,9 @@ export function postJSON<T>(path: string, body: unknown): Promise<T> {
   });
 }
 
+/** GET JSON helper */
 export function getJSON<T>(path: string): Promise<T> {
-  return request<T>(path, { method: 'GET' });
-}
-
-export interface AuthResponse {
-  token: string;
+  return request<T>(path, {
+    method: 'GET',
+  });
 }

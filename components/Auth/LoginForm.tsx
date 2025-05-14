@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { postJSON, AuthResponse } from "@/lib/api";
+import { postJSON } from "@/lib/api";        // ya no importa AuthResponse aquí
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, AlertCircle } from "lucide-react";
 
@@ -17,12 +17,14 @@ export default function LoginForm() {
     setError(null);
 
     try {
-      const data = await postJSON<AuthResponse>(
+      // Lanza POST /auth/login y el backend responde con { user }
+      // y coloca la cookie HttpOnly automáticamente
+      await postJSON<{ user: { id: number; name: string; email: string } }>(
         "/auth/login",
         { email, password }
       );
-      // Guarda el token y redirige
-      localStorage.setItem("token", data.token);
+
+      // Redirige al dashboard
       router.push("/negocio");
     } catch (err: unknown) {
       if (err instanceof Error) {

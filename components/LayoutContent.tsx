@@ -15,35 +15,31 @@ export default function LayoutContent({
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
 
-  // Espera a montar para evitar mismatches SSR/CSR
   useEffect(() => {
     setMounted(true);
   }, []);
   if (!mounted) return null;
 
-  // Rutas en las que NO queremos ni sidebar ni topbar
   const hideNavPaths = ["/", "/login", "/register"];
   if (hideNavPaths.includes(pathname)) {
     return <>{children}</>;
   }
 
-  // En el resto mostramos la navegación
-  const sidebarWidth = isHovered ? "ml-64" : "ml-16";
+  // Aplica ml solo en desktop
+  const sidebarWidth = isHovered ? "md:ml-64" : "md:ml-16";
 
   return (
     <div className="flex">
-      {/* Sidebar (desktop y tablet) */}
+      {/* Sidebar */}
       <Sidebar />
 
-      {/* Contenedor principal, desplazado según el ancho de la sidebar */}
+      {/* Contenido principal */}
       <div
-        className={`min-h-screen flex-1 bg-[#f8f2e0]
-                    transition-all duration-300 ${sidebarWidth}`}
+        className={`min-h-screen flex-1 bg-[#f8f2e0] transition-all duration-300 ${sidebarWidth}`}
       >
-        {/* Topbar encima del contenido */}
         <Topbar />
 
-        <main className="p-4">
+        <main className="pt-24 px-4 sm:px-6 md:px-8">
           {children}
         </main>
       </div>

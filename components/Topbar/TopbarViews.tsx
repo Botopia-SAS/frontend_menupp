@@ -37,6 +37,10 @@ export function PedidosView() {
 }
 
 // --- Componente común de pestañas
+// TopbarViews.tsx (reemplaza solo TabNav)
+
+// TopbarViews.tsx (reemplaza solo TabNav)
+
 function TabNav({
   tabs,
   pathname,
@@ -45,21 +49,26 @@ function TabNav({
   pathname: string;
 }) {
   return (
-    <nav className="flex gap-5 mt-1 ">
-      {tabs.map((tab) => (
-        <Link href={tab.href} key={tab.href}>
-          <span
-            className={cn(
-              "text-sm pb-1 border-b-2 transition-all",
-              pathname === tab.href
-                ? "border-black text-black font-semibold"
-                : "border-transparent text-gray-400 hover:text-black"
-            )}
-          >
-            {tab.label}
-          </span>
-        </Link>
-      ))}
+    <nav className="relative mt-1 overflow-x-auto scrollbar-hide max-w-full">
+      <div className="flex gap-5 pr-4 pl-1">
+        {tabs.map((tab) => (
+          <Link href={tab.href} key={tab.href}>
+            <span
+              className={cn(
+                "whitespace-nowrap text-sm pb-1 border-b-2 transition-all",
+                pathname === tab.href
+                  ? "border-black text-black font-semibold"
+                  : "border-transparent text-gray-400 hover:text-black"
+              )}
+            >
+              {tab.label}
+            </span>
+          </Link>
+        ))}
+      </div>
+
+      {/* Mascara de sombreado lateral para indicar scroll */}
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#070068] to-transparent" />
     </nav>
   );
 }

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { postJSON } from "@/lib/api";
@@ -39,9 +39,9 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#f3d583] flex items-center justify-center">
+    <div className="min-h-screen w-full bg-[#1c0049] flex items-center justify-center">
       <div className="w-full max-w-md px-6">
-        <h1 className="text-5xl font-bold text-[#460770] text-center mb-2">
+        <h1 className="text-5xl font-bold text-[#9759c0] text-center mb-2">
           menüpp
         </h1>
         <p className="text-[#460770] text-center mb-8 font-semibold">

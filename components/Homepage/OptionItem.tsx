@@ -1,12 +1,26 @@
 "use client";
 import React, { useState } from "react";
-import { GripVertical, Settings as SettingsIcon } from "lucide-react";
+import { Settings as SettingsIcon } from "lucide-react";
 import { Switch } from "@/components/ui/switch"; // shadcn/ui
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import OptionDropdown from "./OptionDropdown";
 import EditOptionModal from "./EditOptionModal";
 import clsx from "clsx";
+import {
+  GripVertical,
+  Mail,
+  Home,
+  Settings,
+  // añade los íconos posibles
+} from "lucide-react";
+
+const iconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
+  GripVertical,
+  Mail,
+  Home,
+  Settings,
+};
 
 export type Option = {
   id: string;
@@ -25,6 +39,15 @@ export default function OptionItem({ option, onUpdate, onDelete }: Props) {
   const [showDD, setShowDD] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
+  // Map icon names to Lucide icon components
+  const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
+    GripVertical,
+    Settings: SettingsIcon,
+    // Add more icons here as needed, e.g.:
+    // Home: HomeIcon,
+    // User: UserIcon,
+  };
+
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: option.id });
 
@@ -33,7 +56,7 @@ export default function OptionItem({ option, onUpdate, onDelete }: Props) {
     transition,
   };
 
-  const LucideIcon = require("lucide-react")[option.icon] ?? GripVertical;
+  const LucideIcon = iconMap[option.icon] ?? GripVertical;
 
   return (
     <>

@@ -10,7 +10,6 @@ import {
   MapPin,
   Menu,
   Star,
-  Mail,
 } from "lucide-react";
 import { Option } from "./OptionItem";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

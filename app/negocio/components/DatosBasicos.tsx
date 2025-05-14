@@ -1,4 +1,33 @@
-export default function DatosBasicos() {
+'use client'
+
+type Props = {
+  data: {
+    name: string
+    logo_url: string
+    country_code: string
+    currency_code: string
+    timezone: string
+    language: string
+  }
+  onChange: (
+    newState: Partial<{
+      name: string
+      logo_url: string
+      country_code: string
+      currency_code: string
+      timezone: string
+      language: string
+    }>
+  ) => void
+}
+
+export default function DatosBasicos({ data, onChange }: Props) {
+  const handle = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    onChange({ [e.target.name]: e.target.value })
+  }
+
   return (
     <div className="bg-[#fcfcfc] p-6 rounded-2xl shadow space-y-6 border border-[#fafafa]">
       <h2 className="text-lg font-semibold text-black">Datos básicos</h2>
@@ -10,20 +39,28 @@ export default function DatosBasicos() {
             Nombre
           </label>
           <input
+            name="name"
+            value={data.name}
+            onChange={handle}
             type="text"
             placeholder="Ej. Pollería Irreverente"
             className="w-full border border-gray-400 rounded-md px-4 py-2 text-black"
           />
         </div>
 
-        {/* Logo (placeholder por ahora) */}
+        {/* Logo URL */}
         <div>
           <label className="block text-sm font-medium mb-1 text-black">
-            Logo
+            Logo URL
           </label>
-          <div className="w-full h-[200px] bg-gray-200 rounded-md flex items-center justify-center text-sm text-gray-500">
-            Vista previa del logo
-          </div>
+          <input
+            name="logo_url"
+            value={data.logo_url}
+            onChange={handle}
+            type="text"
+            placeholder="https://..."
+            className="w-full border border-gray-400 rounded-md px-4 py-2 text-black"
+          />
           <p className="text-xs text-black mt-1">
             Dimensiones recomendadas: 720x360px
           </p>
@@ -34,9 +71,15 @@ export default function DatosBasicos() {
           <label className="block text-sm font-medium mb-1 text-black">
             País
           </label>
-          <select className="w-full border border-gray-400 rounded-md px-4 py-2 text-gray-400">
-            <option value="colombia">🇨🇴 Colombia</option>
-            <option value="mexico">🇲🇽 México</option>
+          <select
+            name="country_code"
+            value={data.country_code}
+            onChange={handle}
+            className="w-full border border-gray-400 rounded-md px-4 py-2 text-black"
+          >
+            <option value="">Selecciona país</option>
+            <option value="CO">🇨🇴 Colombia</option>
+            <option value="MX">🇲🇽 México</option>
           </select>
         </div>
 
@@ -45,9 +88,15 @@ export default function DatosBasicos() {
           <label className="block text-sm font-medium mb-1 text-black">
             Moneda
           </label>
-          <select className="w-full border border-gray-400 rounded-md px-4 py-2 text-gray-400">
-            <option>COP - Peso colombiano ($)</option>
-            <option>MXN - Peso mexicano ($)</option>
+          <select
+            name="currency_code"
+            value={data.currency_code}
+            onChange={handle}
+            className="w-full border border-gray-400 rounded-md px-4 py-2 text-black"
+          >
+            <option value="">Selecciona moneda</option>
+            <option value="COP">COP - Peso colombiano ($)</option>
+            <option value="MXN">MXN - Peso mexicano ($)</option>
           </select>
         </div>
 
@@ -56,9 +105,15 @@ export default function DatosBasicos() {
           <label className="block text-sm font-medium mb-1 text-black">
             Zona horaria
           </label>
-          <select className="w-full border border-gray-400 rounded-md px-4 py-2 text-gray-400">
-            <option>America/Bogota</option>
-            <option>America/Mexico_City</option>
+          <select
+            name="timezone"
+            value={data.timezone}
+            onChange={handle}
+            className="w-full border border-gray-400 rounded-md px-4 py-2 text-black"
+          >
+            <option value="">Selecciona zona</option>
+            <option value="America/Bogota">America/Bogota</option>
+            <option value="America/Mexico_City">America/Mexico_City</option>
           </select>
         </div>
 
@@ -67,12 +122,18 @@ export default function DatosBasicos() {
           <label className="block text-sm font-medium mb-1 text-black">
             Idioma
           </label>
-          <select className="w-full border border-gray-400 rounded-md px-4 py-2 text-gray-400">
-            <option>Español</option>
-            <option>Inglés</option>
+          <select
+            name="language"
+            value={data.language}
+            onChange={handle}
+            className="w-full border border-gray-400 rounded-md px-4 py-2 text-black"
+          >
+            <option value="">Selecciona idioma</option>
+            <option value="es">Español</option>
+            <option value="en">Inglés</option>
           </select>
         </div>
       </div>
     </div>
-  );
+  )
 }

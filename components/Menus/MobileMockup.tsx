@@ -10,7 +10,7 @@ const MobileMockup: React.FC<MobileMockupProps> = ({ children, className }) => {
   return (
     <div
       className={clsx(
-        'relative w-full h-[600px] bg-black rounded-3xl overflow-hidden',
+        'relative w-64 h-[450px] bg-black rounded-3xl overflow-hidden',
         className
       )}
     >

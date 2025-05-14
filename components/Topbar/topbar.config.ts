@@ -4,6 +4,7 @@ import PedidosView from "./views/PedidosView";
 import ReservasView from "./views/ReservasView";
 import MarketingView from "./views/MarketingView";
 import ClientesView from "./views/ClientesView";
+import MenusCategoriasView from "./views/MenusCategoriaView";
 import AnaliticaView from "./views/AnaliticaView"; // Updated to match the correct file name
 
 export const topbarMap = [
@@ -41,5 +42,10 @@ export const topbarMap = [
     path: "/analitica",
     title: "Analítica",
     view: AnaliticaView,
+  },
+  {
+    path: "/categorias",
+    title: "Menú",
+    view: MenusCategoriasView,
   },
 ];

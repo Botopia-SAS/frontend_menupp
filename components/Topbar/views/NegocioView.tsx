@@ -23,7 +23,7 @@ export default function NegocioView() {
               "text-sm pb-1 border-b-2 transition-all",
               pathname === tab.href
                 ? "border-white text-white font-semibold"
-                : "border-transparent text-white hover:text-white"
+                : "border-transparent text-gray-400 hover:text-white"
             )}
           >
             {tab.label}

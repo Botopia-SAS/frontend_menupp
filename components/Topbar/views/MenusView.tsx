@@ -26,8 +26,8 @@ export default function MenusView() {
             className={cn(
               "text-sm pb-1 border-b-2 transition-all",
               pathname === tab.href
-                ? "border-black text-black font-semibold"
-                : "border-transparent text-gray-400 hover:text-black"
+                ? "border-white text-white font-semibold"
+                : "border-transparent text-gray-400 hover:text-white"
             )}
           >
             {tab.label}
@@ -43,20 +43,20 @@ export default function MenusView() {
             setSubmenu(null);
             setSubsubmenu(null);
           }}
-          className="text-sm pb-1 border-b-2 border-transparent text-gray-400 hover:text-black flex items-center gap-1"
+          className="text-sm pb-1 border-b-2 border-transparent text-gray-400 flex items-center gap-1"
         >
           Diseño <ChevronDown size={14} />
         </button>
 
         {/* Nivel 1 */}
         {open && (
-          <div className="absolute mt-2 bg-white border rounded-md shadow-md w-48 z-50">
+          <div className="absolute mt-2 bg-white border rounded-md shadow-md w-48 z-50 text-bllack">
             <button
               onClick={() => {
                 setSubmenu("homepages");
                 setSubsubmenu(null);
               }}
-              className="w-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center text-sm"
+              className="w-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center text-sm text-black rounded-md"
             >
               Homepages <ChevronRight size={14} />
             </button>
@@ -65,7 +65,7 @@ export default function MenusView() {
                 setSubmenu("menus");
                 setSubsubmenu(null);
               }}
-              className="w-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center text-sm"
+              className="w-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center text-sm text-black rounded-md"
             >
               Menús <ChevronRight size={14} />
             </button>
@@ -74,14 +74,16 @@ export default function MenusView() {
 
         {/* Nivel 2 */}
         {submenu === "homepages" && (
-          <div className="absolute left-48 top-0 mt-2 bg-white border rounded-md shadow-md w-56 z-50">
+          <div className="absolute left-48 top-0 mt-2 bg-white border rounded-md shadow-md w-56 z-50 text black">
             <Link href="/menus/design/homepages/marca">
-              <div className="px-4 py-2 hover:bg-gray-100 text-sm">
-                Pollería Irreverente (Marca)
+              <div className="px-4 py-2 hover:bg-gray-100 text-sm text-black rounded-md">
+                (Marca)
               </div>
             </Link>
-            <Link href="/menus/design/homepages/bogota">
-              <div className="px-4 py-2 hover:bg-gray-100 text-sm">Bogotá</div>
+            <Link href="/menus/design/homepages/marca">
+              <div className="px-4 py-2 hover:bg-gray-100 text-sm text-black rounded-md">
+                Bogotá
+              </div>
             </Link>
           </div>
         )}
@@ -90,7 +92,7 @@ export default function MenusView() {
           <div className="absolute left-48 top-0 mt-2 bg-white border rounded-md shadow-md w-56 z-50">
             <button
               onClick={() => setSubsubmenu("bogota")}
-              className="w-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center text-sm"
+              className="w-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center text-sm text-black rounded-md"
             >
               Bogotá <ChevronRight size={14} />
             </button>
@@ -100,8 +102,10 @@ export default function MenusView() {
         {/* Nivel 3 SOLO para "menús → bogotá" */}
         {submenu === "menus" && subsubmenu === "bogota" && (
           <div className="absolute left-[384px] top-0 mt-2 bg-white border rounded-md shadow-md w-56 z-50">
-            <Link href="/menus/design/menus/bogota/menu">
-              <div className="px-4 py-2 hover:bg-gray-100 text-sm">Menú</div>
+            <Link href="/menus/design/menus/menu">
+              <div className="px-4 py-2 hover:bg-gray-100 text-sm text-black">
+                Menú
+              </div>
             </Link>
           </div>
         )}

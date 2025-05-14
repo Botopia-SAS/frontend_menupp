@@ -1,13 +1,13 @@
 // components/MobilePreview.tsx (iPhone-style frame only)
-import React from 'react';
-import clsx from 'clsx';
+import React from "react";
+import clsx from "clsx";
 
-const MobilePreview: React.FC<{widthClass?: string}> = ({ widthClass }) => (
+const MobilePreview: React.FC<{ widthClass?: string }> = ({}) => (
   <div
     className={clsx(
-      'relative mx-auto',    // centrar
-      widthClass ?? 'w-72 md:w-80 lg:w-96', // ancho ajustable
-      'h-[640px] bg-black rounded-3xl shadow-xl'
+      "hidden lg:block", // oculto en móviles, visible desde lg en adelante
+      "relative mx-auto",
+      "h-[690px] w-[340px] bg-black rounded-4xl shadow-xl mr-50"
     )}
   >
     {/* Notch */}

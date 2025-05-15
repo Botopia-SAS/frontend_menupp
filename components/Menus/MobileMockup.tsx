@@ -10,12 +10,12 @@ const MobileMockup: React.FC<MobileMockupProps> = ({ children, className }) => {
   return (
     <div
       className={clsx(
-        'relative w-64 h-[450px] bg-black rounded-3xl overflow-hidden',
+        'relative w-72 h-[565px] bg-black rounded-[40px] -mr-60 overflow-hidden',
         className
       )}
     >
       {/* Borde interior blanco simulando pantalla */}
-      <div className="absolute inset-0 m-2 bg-white rounded-2xl overflow-hidden">
+      <div className="absolute inset-0 m-2 bg-white rounded-4xl overflow-hidden">
         {children}
       </div>
       {/* Altavoz (barra) */}

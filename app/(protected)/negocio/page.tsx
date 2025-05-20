@@ -55,9 +55,10 @@ export default function MarcaPage() {
       // refresca el cache de Next.js (opcional)
       router.refresh()
       alert('¡Configuración guardada!')
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err)
-      alert('Error guardando: ' + err.message)
+      const msg = err instanceof Error ? err.message : 'Error guardando'
+      alert('Error guardando: ' + msg)
     } finally {
       setSaving(false)
     }

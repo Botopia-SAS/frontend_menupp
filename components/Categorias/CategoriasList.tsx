@@ -26,7 +26,7 @@ import { CSS } from "@dnd-kit/utilities";
 
 /* ------------------------------------------------------------------ */
 /* Ajusta el import al lugar donde declaras la interfaz Categoria      */
-import type { Categoria } from "@/app/categorias/types";
+import type { Categoria } from "@/app/(protected)/categorias/types";
 /* ------------------------------------------------------------------ */
 
 type Props = {

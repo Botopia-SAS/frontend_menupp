@@ -16,7 +16,7 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import type { Categoria, Producto } from "@/app/categorias/types";
+import type { Categoria, Producto } from "@/app/(protected)/categorias/types";
 
 type Props = {
   data: Producto[];

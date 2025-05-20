@@ -1,31 +1,53 @@
-// lib/api.ts
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+import { supabase } from './supabaseClient';
 
-interface ApiError { error?: string; }
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+
+interface ApiError { error?: string }
 
 /**
  * Hace un fetch y lanza un Error si status >= 400.
- * Incluye siempre las cookies (HttpOnly token).
+ * Incluye siempre las cookies (HttpOnly token) y el Bearer token de Supabase.
  */
 async function request<T>(
   path: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
+  // 1️⃣ Recupera la sesión de Supabase
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  console.log('[API] Supabase session:', session);
+
+  const token = session?.access_token;
+  console.log('[API] Using token:', token);
+
+  // 2️⃣ Construye los headers, inyectando Authorization si hay token
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...((options.headers as Record<string, string>) ?? {}),
+  };
+
+  const url = `${API_BASE}${path}`;
+  console.log('[API] Fetching:', url, 'Options:', { ...options, headers });
+
+  // 3️⃣ Lanza la petición con cookies y headers correctos
+  const res = await fetch(url, {
     ...options,
-    credentials: 'include',              // ← aquí permitimos cookies
-    headers: {
-      'Content-Type': 'application/json',
-      ...((options.headers as Record<string, string>) ?? {}),
-    },
+    credentials: 'include',
+    headers,
   });
 
+  console.log('[API] Response status:', res.status);
   if (!res.ok) {
     const body = (await res.json().catch(() => ({}))) as ApiError;
+    console.error('[API] Error body:', body);
     throw new Error(body.error ?? res.statusText);
   }
 
-  return res.json();
+  const json = await res.json();
+  console.log('[API] Response JSON:', json);
+  return json;
 }
 
 /** POST JSON helper */

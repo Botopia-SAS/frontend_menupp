@@ -1,39 +1,28 @@
 'use client'
 
-import { useState } from "react";
-import { postJSON } from "@/lib/api";        // ya no importa AuthResponse aquí
-import { useRouter } from "next/navigation";
-import { Eye, EyeOff, AlertCircle } from "lucide-react";
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { supabase } from '@/lib/supabaseClient'
+import { Eye, EyeOff, AlertCircle } from 'lucide-react'
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPass, setShowPass] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+  const [email, setEmail]       = useState('')
+  const [password, setPassword] = useState('')
+  const [showPass, setShowPass] = useState(false)
+  const [error, setError]       = useState<string | null>(null)
+  const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
+    e.preventDefault()
+    setError(null)
 
-    try {
-      // Lanza POST /auth/login y el backend responde con { user }
-      // y coloca la cookie HttpOnly automáticamente
-      await postJSON<{ user: { id: number; name: string; email: string } }>(
-        "/auth/login",
-        { email, password }
-      );
-
-      // Redirige al dashboard
-      router.push("/negocio");
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Error al iniciar sesión");
-      }
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+    if (error) {
+      setError(error.message)
+    } else {
+      router.push('/negocio')
     }
-  };
+  }
 
   return (
     <div className="min-h-screen w-full bg-[#1c0049] flex items-center justify-center">
@@ -46,13 +35,12 @@ export default function LoginForm() {
         </p>
 
         <form onSubmit={handleLogin} className="space-y-6">
-          {/* Input Email */}
           <div className="relative">
             <input
               type="email"
               placeholder="Correo Electrónico"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               required
               className="w-full px-4 py-3 rounded-full bg-white text-black placeholder:text-[#9CA3AF] outline-none"
             />
@@ -68,13 +56,12 @@ export default function LoginForm() {
             )}
           </div>
 
-          {/* Input Contraseña */}
           <div className="relative">
             <input
-              type={showPass ? "text" : "password"}
+              type={showPass ? 'text' : 'password'}
               placeholder="Contraseña"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               required
               className="w-full px-4 py-3 rounded-full bg-white text-black placeholder:text-[#9CA3AF] outline-none"
             />
@@ -87,10 +74,8 @@ export default function LoginForm() {
             </button>
           </div>
 
-          {/* Mensaje de error */}
           {error && <p className="text-[#EF4444] text-sm">{error}</p>}
 
-          {/* Botón */}
           <button
             type="submit"
             className="w-full py-3 rounded-full bg-[#818CF8] text-white font-semibold hover:opacity-90 transition"
@@ -98,9 +83,8 @@ export default function LoginForm() {
             Iniciar sesión
           </button>
 
-          {/* Link registro */}
           <p className="text-white text-center text-sm">
-            ¿No tienes cuenta?{" "}
+            ¿No tienes cuenta?{' '}
             <a href="/register" className="underline hover:text-[#EF4444]">
               Regístrate
             </a>
@@ -108,5 +92,5 @@ export default function LoginForm() {
         </form>
       </div>
     </div>
-  );
+  )
 }

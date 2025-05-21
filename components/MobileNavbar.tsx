@@ -9,14 +9,13 @@ import { Menu } from 'lucide-react';
 
 export default function MobileNavbar() {
   const pathname = usePathname();
+  const [showMore, setShowMore] = useState(false);
+
   // rutas donde NO queremos mostrar la barra
   const hideOn = ['/', '/login', '/register'];
-
   if (hideOn.includes(pathname)) {
     return null;
   }
-
-  const [showMore, setShowMore] = useState(false);
 
   // Ítems fijos inferiores
   const mainItems = sidebarItems.filter(item =>
@@ -39,13 +38,15 @@ export default function MobileNavbar() {
         ))}
 
         {/* Botón hamburguesa */}
-        <button onClick={() => setShowMore(prev => !prev)} className="flex flex-col items-center text-xs">
+        <button
+          onClick={() => setShowMore(prev => !prev)}
+          className="flex flex-col items-center text-xs"
+        >
           <Menu className="w-5 h-5" />
           <span>Más</span>
         </button>
       </div>
 
-      {/* Menú adicional desplegable */}
       {showMore && (
         <div className="bg-[#3b0ac2] border-t border-white/10">
           <div className="flex flex-wrap justify-around py-2">
@@ -53,7 +54,9 @@ export default function MobileNavbar() {
               <Link
                 key={path}
                 href={disabled ? '#' : path}
-                className={`flex flex-col items-center text-xs p-2 ${disabled ? 'opacity-40 pointer-events-none' : ''}`}
+                className={`flex flex-col items-center text-xs p-2 ${
+                  disabled ? 'opacity-40 pointer-events-none' : ''
+                }`}
               >
                 <Icon className="w-5 h-5" />
                 <span className="mt-1">{label}</span>

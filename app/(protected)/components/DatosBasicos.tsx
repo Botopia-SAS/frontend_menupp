@@ -1,5 +1,8 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
+import LogoUploader from './LogoUploader'
+
 type Props = {
   data: {
     name: string
@@ -24,14 +27,11 @@ type Props = {
 export default function DatosBasicos({ data, onChange }: Props) {
   const handle = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    onChange({ [e.target.name]: e.target.value })
-  }
+  ) => onChange({ [e.target.name]: e.target.value })
 
   return (
     <div className="bg-[#fcfcfc] p-6 rounded-2xl shadow space-y-6 border border-[#fafafa]">
       <h2 className="text-lg font-semibold text-black">Datos básicos</h2>
-
       <div className="space-y-4">
         {/* Nombre */}
         <div>
@@ -48,22 +48,15 @@ export default function DatosBasicos({ data, onChange }: Props) {
           />
         </div>
 
-        {/* Logo URL */}
+        {/* Logo */}
         <div>
           <label className="block text-sm font-medium mb-1 text-black">
-            Logo URL
+            Logo
           </label>
-          <input
-            name="logo_url"
-            value={data.logo_url}
-            onChange={handle}
-            type="text"
-            placeholder="https://..."
-            className="w-full border border-gray-400 rounded-md px-4 py-2 text-black"
+          <LogoUploader
+            imageUrl={data.logo_url}
+            onChange={url => onChange({ logo_url: url })}
           />
-          <p className="text-xs text-black mt-1">
-            Dimensiones recomendadas: 720x360px
-          </p>
         </div>
 
         {/* País */}

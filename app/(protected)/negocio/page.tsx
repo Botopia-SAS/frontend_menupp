@@ -25,14 +25,14 @@ export default function MarcaPage() {
   useEffect(() => {
     async function load() {
       try {
-        const [b, s, v] = await Promise.all([
-          getJSON<Brand> ('/brand'),
+        const [marca, social, survey] = await Promise.all([
+          getJSON<Brand>('/brand'),
           getJSON<Social>('/social'),
           getJSON<Survey>('/survey'),
         ])
-        if (b) setDatos(b)
-        if (s) setRedes(s)
-        if (v) setEncuestas(v)
+        if (marca) setDatos(marca)
+        if (social) setRedes(social)
+        if (survey) setEncuestas(survey)
       } catch (e) {
         // si aún no existen filas salta aquí, lo ignoramos
         console.debug('No existen aún datos', e)
@@ -48,7 +48,7 @@ export default function MarcaPage() {
     setSaving(true)
     try {
       await Promise.all([
-        postJSON<Brand> ('/brand' , datos),
+        postJSON<Brand>('/brand', datos),
         postJSON<Social>('/social', redes),
         postJSON<Survey>('/survey', encuestas),
       ])

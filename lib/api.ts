@@ -1,6 +1,6 @@
 import { supabase } from './supabaseClient';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 interface ApiError { error?: string }
 
@@ -52,7 +52,7 @@ async function request<T>(
 
 /** POST JSON helper */
 export function postJSON<T>(path: string, body: unknown): Promise<T> {
-  return request<T>(path, {
+  return request<T>(`/api/settings${path}`, {
     method: 'POST',
     body: JSON.stringify(body),
   });
@@ -60,7 +60,7 @@ export function postJSON<T>(path: string, body: unknown): Promise<T> {
 
 /** GET JSON helper */
 export function getJSON<T>(path: string): Promise<T> {
-  return request<T>(path, {
+  return request<T>(`/api/settings${path}`, {
     method: 'GET',
   });
 }

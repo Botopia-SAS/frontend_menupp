@@ -1,12 +1,21 @@
 // components/MobileNavbar.tsx
 'use client';
 
-import { sidebarItems } from './Sidebar/sidebar.config';
-import Link from 'next/link';
 import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { sidebarItems } from './Sidebar/sidebar.config';
 import { Menu } from 'lucide-react';
 
 export default function MobileNavbar() {
+  const pathname = usePathname();
+  // rutas donde NO queremos mostrar la barra
+  const hideOn = ['/', '/login', '/register'];
+
+  if (hideOn.includes(pathname)) {
+    return null;
+  }
+
   const [showMore, setShowMore] = useState(false);
 
   // Ítems fijos inferiores

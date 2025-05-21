@@ -67,7 +67,7 @@ export default function MarcaPage() {
   if (loading) return <p className="pt-6">Cargando configuración…</p>
 
   return (
-    <div className="pt-6 max-w-2xl mx-auto space-y-6">
+    <div className="pt-6 pb-16 md:pb-0 max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold">Tu marca</h1>
 
       <DatosBasicos

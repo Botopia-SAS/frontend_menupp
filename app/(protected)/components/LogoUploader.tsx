@@ -1,4 +1,26 @@
+// app/(protected)/components/LogoUploader.tsx
 'use client'
+
+// 1) Primero extendemos el tipo global de `window`
+declare global {
+  interface Window {
+    cloudinary: {
+      createUploadWidget: (
+        options: {
+          cloudName: string
+          uploadPreset: string
+          sources: Array<'local' | 'url'>
+          multiple: boolean
+          cropping: boolean
+        },
+        callback: (
+          error: unknown,
+          result: { event: string; info: { secure_url: string } }
+        ) => void
+      ) => { open: () => void }
+    }
+  }
+}
 
 import { useEffect } from 'react'
 import { Eye, Edit3, Trash2 } from 'lucide-react'
@@ -27,11 +49,20 @@ export default function LogoUploader({
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!
     const preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!
 
-    // @ts-ignore
+    // 2) Ya no hace falta @ts-ignore
     const widget = window.cloudinary.createUploadWidget(
-      { cloudName, uploadPreset: preset, sources: ['local','url'], multiple: false, cropping: true },
-      (_: any, result: any) => {
-        if (result.event === 'success') onChange(result.info.secure_url)
+      {
+        cloudName,
+        uploadPreset: preset,
+        sources: ['local', 'url'],
+        multiple: false,
+        cropping: true,
+      },
+      // 3) Reemplazamos `any` por `unknown` y un tipo concreto para `result`
+      (_error, result) => {
+        if (result.event === 'success') {
+          onChange(result.info.secure_url)
+        }
       }
     )
     widget.open()
@@ -40,15 +71,12 @@ export default function LogoUploader({
   return (
     <div className="w-full max-w-xl mx-auto">
       <div className="relative w-full aspect-[2/1] rounded-2xl overflow-hidden shadow-md">
-        {/* 1) El DIV de fondo con imagen y filtro de brillo (hace semitransparente) */}
         <div
           className="absolute inset-0 bg-cover bg-center filter brightness-75"
           style={{
             backgroundImage: `url(${imageUrl || defaultImageUrl})`,
           }}
         />
-
-        {/* 2) Botones encima */}
         <div className="absolute inset-0 flex items-center justify-center space-x-4 z-10">
           {imageUrl && (
             <button
